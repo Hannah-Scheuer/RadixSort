@@ -7,9 +7,21 @@ public class Radix{
 
   //return the number of digits in n.
   public static int length(int n){
+    if (n<0){
+      n = n*-1;
+    }
     return (int)(Math.log10(n)+1);
   }
 
   //Merge all of the linked lists in the bucket array into your original linked list. The original may have elements, and those should be kept.
-  public static void merge(MyLinkedList original,MyLinkedList[]buckets){}
+  public static void merge(SortableLinkedList original, SortableLinkedList[]buckets){
+    for (int i = 0; i<10;i++){
+      original.extend([i]buckets);
+    }
+  }
+
+  public static void radixSortSimple(SortableLinkedList data){
+    
+  }
+
 }
