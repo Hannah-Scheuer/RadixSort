@@ -6,7 +6,9 @@ public class Radix{
   }
 
   //return the number of digits in n.
-  public static int length(int n){}
+  public static int length(int n){
+    return (int)(Math.log10(n)+1);
+  }
 
   //Merge all of the linked lists in the bucket array into your original linked list. The original may have elements, and those should be kept.
   public static void merge(MyLinkedList original,MyLinkedList[]buckets){}
