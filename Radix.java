@@ -26,12 +26,16 @@ public class Radix{
 
   public static void radixSortSimple(SortableLinkedList data){
     int maxLength = 0;
-    for (int i = 0; i < data.size(); i++) {
-      int dataLength = Radix.length(data.get(i));
+    SortableLinkedList temp = new SortableLinkedList();
+    while (data.size() != 0) {
+      int curr = data.remove(0);
+      int dataLength = Radix.length(curr);
+      temp.add(curr);
       if (dataLength > maxLength){
-      maxLength = dataLength;
+        maxLength = dataLength;
       }
     }
+    data.extend(temp);
 
     for (int i=0;i<maxLength;i++){
       SortableLinkedList[] buckets = new SortableLinkedList[10];
@@ -39,15 +43,17 @@ public class Radix{
         SortableLinkedList b = new SortableLinkedList();
         buckets[y] = b;
       }
-      for (int j = 0; j < data.size(); j++){
-        int digit = nth(data.get(j), i);
-        buckets[digit].add(data.get(j));
+
+      while (data.size() != 0){
+        int curr = data.remove(0);
+        int digit = nth(curr, i);
+        buckets[digit].add(curr);
       }
       SortableLinkedList sorted = new SortableLinkedList();
       Radix.merge(sorted, buckets);
 
-      SortableLinkedList temp = new SortableLinkedList();
-      temp.extend(data);
+      //SortableLinkedList temp = new SortableLinkedList();
+      //temp.extend(data);
 
       data.extend(sorted);
     }
@@ -55,6 +61,9 @@ public class Radix{
 
 
   public static void radixSort(SortableLinkedList data){
+    SortableLinkedList pos = new SortableLinkedList();
+    SortableLinkedList neg = new SortableLinkedList();
+    SortableLinkedList zeros = new SortableLinkedList();
 
   }
 
