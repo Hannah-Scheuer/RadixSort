@@ -2,6 +2,9 @@ public class Radix{
 
   //get nth digit of an int, where 0 is the ones column, 1 is the tens column etc.
   public static int nth(int n, int col){
+    if (n<0){
+      n = n*-1;
+    }
     return (int) (n / Math.pow(10, col)) % 10;
   }
 
@@ -10,7 +13,8 @@ public class Radix{
     if (n<0){
       n = n*-1;
     }
-    return (int)(Math.log10(n)+1);
+    String out = String.valueOf(n);
+    return out.length();
   }
 
   //Merge all of the linked lists in the bucket array into your original linked list. The original may have elements, and those should be kept.
