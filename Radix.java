@@ -2,7 +2,7 @@ public class Radix{
 
   //get nth digit of an int, where 0 is the ones column, 1 is the tens column etc.
   public static int nth(int n, int col){
-    return n - n%((col+1)*10);
+    return (int) (n / Math.pow(10, col)) % 10;
   }
 
   //return the number of digits in n.
@@ -23,29 +23,35 @@ public class Radix{
   public static void radixSortSimple(SortableLinkedList data){
     int maxLength = 0;
     for (int i = 0; i < data.size(); i++) {
-      if (data.get(i).length() > maxLength){
-      maxLength = data.get(i).length();
+      int dataLength = Radix.length(data.get(i));
+      if (dataLength > maxLength){
+      maxLength = dataLength;
       }
     }
 
     for (int i=0;i<maxLength;i++){
-      new SortableLinkedList [] buckets = new SortableLinkedList[10];
-      for (int i = 0; i< buckets.length; i++){
-        new SortableLinkedList b = new SortableLinkedList();
-        buckets[i] = b;
+      SortableLinkedList[] buckets = new SortableLinkedList[10];
+      for (int y = 0; y< buckets.length; y++){
+        SortableLinkedList b = new SortableLinkedList();
+        buckets[y] = b;
       }
       for (int j = 0; j < data.size(); j++){
         int digit = nth(data.get(j), i);
         buckets[digit].add(j);
       }
-      new SortableLinkedList sorted = new SortableLinkedList();
+      SortableLinkedList sorted = new SortableLinkedList();
       Radix.merge(sorted, buckets);
 
-      new SortableLinkedList temp = new SortableLinkedList();
+      SortableLinkedList temp = new SortableLinkedList();
       temp.extend(data);
 
       data.extend(sorted);
     }
+  }
+
+
+  public static void radixSort(SortableLinkedList data){
+
   }
 
 }
