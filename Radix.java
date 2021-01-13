@@ -41,7 +41,7 @@ public class Radix{
       }
       for (int j = 0; j < data.size(); j++){
         int digit = nth(data.get(j), i);
-        buckets[digit].add(j);
+        buckets[digit].add(data.get(j));
       }
       SortableLinkedList sorted = new SortableLinkedList();
       Radix.merge(sorted, buckets);
